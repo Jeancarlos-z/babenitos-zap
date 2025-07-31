@@ -1,0 +1,73 @@
+<div class="container text-white">
+  <h3 class="mb-4 border-bottom pb-2">Gestión de Clientes</h3>
+
+  <div class="mb-3">
+    <button class="btn btn-outline-info" id="btnNuevoCliente">
+      <i class="bi bi-person-plus-fill"></i> Nuevo Cliente
+    </button>
+  </div>
+
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>RUC</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tabla-clientes">
+      <!-- Filas insertadas dinámicamente -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal Cliente -->
+<div class="modal fade" id="modalCliente" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content text-dark">
+      <div class="modal-header">
+        <h5 class="modal-title">Cliente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="clienteId">
+
+        <div class="mb-2">
+          <input type="text" class="form-control" id="nombre" placeholder="Nombre" required minlength="3">
+          <div class="form-text text-danger d-none" id="error-nombre">Debe ingresar un nombre válido (mínimo 3 caracteres).</div>
+        </div>
+
+        <div class="mb-2">
+          <input type="email" class="form-control" id="correo" placeholder="Correo" required>
+          <div class="form-text text-danger d-none" id="error-correo">Debe ingresar un correo válido.</div>
+        </div>
+
+        <div class="mb-2">
+          <input type="tel" class="form-control" id="telefono" placeholder="Teléfono" maxlength="9" required>
+          <div class="form-text text-danger d-none" id="error-telefono">Debe ingresar exactamente 9 dígitos numéricos.</div>
+        </div>
+
+        <div class="mb-2">
+          <input type="text" class="form-control" id="direccion" placeholder="Dirección" required minlength="5">
+          <div class="form-text text-danger d-none" id="error-direccion">Dirección mínima de 5 caracteres.</div>
+        </div>
+
+        <div class="mb-2">
+          <input type="text" class="form-control" id="ruc" placeholder="RUC" maxlength="11" required>
+          <div class="form-text text-danger d-none" id="error-ruc">El RUC debe tener exactamente 11 dígitos.</div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="btnGuardarCliente" class="btn btn-primary">Guardar</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/js/cliente.js"></script>

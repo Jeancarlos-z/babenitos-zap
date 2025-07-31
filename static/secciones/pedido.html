@@ -1,0 +1,163 @@
+<h3 class="mb-4 border-bottom pb-2">Gestión de Pedidos</h3>
+
+<!-- Botón + Filtros -->
+<div class="mb-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
+
+  <!-- Botón Nuevo Pedido -->
+  <button id="btnNuevoPedido" class="btn btn-outline-info">
+    <i class="bi bi-plus-square-fill"></i> Nuevo Pedido
+  </button>
+
+  <!-- Filtros -->
+  <div class="d-flex flex-wrap gap-2 align-items-center">
+
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="chkCliente">
+      <label class="form-check-label" for="chkCliente">Cliente</label>
+    </div>
+    <input type="text" class="form-control form-control-sm" id="filtroCliente" placeholder="Ej: Mario" disabled list="listaClientes" style="width: 140px;">
+    <datalist id="listaClientes"></datalist>
+
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="chkFecha">
+      <label class="form-check-label" for="chkFecha">Salida</label>
+    </div>
+    <input type="date" class="form-control form-control-sm" id="filtroFecha" disabled style="width: 140px;">
+
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="chkEstado">
+      <label class="form-check-label" for="chkEstado">Estado</label>
+    </div>
+    <select id="filtroEstado" class="form-select form-select-sm" disabled style="width: 140px;">
+      <option value="">Todos</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="Producción">Producción</option>
+      <option value="Completado">Completado</option>
+    </select>
+
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="chkPrioridad">
+      <label class="form-check-label" for="chkPrioridad">Prioridad</label>
+    </div>
+    <select id="filtroPrioridad" class="form-select form-select-sm" disabled style="width: 130px;">
+      <option value="">Todas</option>
+      <option value="alta">Alta</option>
+      <option value="media">Media</option>
+      <option value="baja">Baja</option>
+    </select>
+
+    <button class="btn btn-sm btn-outline-light" id="btnBuscarPedido">
+      <i class="bi bi-search"></i> Buscar
+    </button>
+  </div>
+</div>
+
+
+
+<table class="table table-dark table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Cliente</th>
+      <th>Fecha Ingreso</th>
+      <th>Fecha Salida</th>
+      <th>Estado</th>
+      <th>Prioridad</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody id="tabla-pedidos">
+    <!-- Las filas serán insertadas desde JS -->
+  </tbody>
+</table>
+
+<!-- Modal para Nuevo/Editar Pedido -->
+<div class="modal fade" id="modalPedido" tabindex="-1" aria-labelledby="modalPedidoLabel">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-info">
+        <h5 class="modal-title" id="modalPedidoLabel">Nuevo Pedido</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <form id="formPedido">
+        <div class="modal-body">
+          <input type="hidden" id="pedidoId">
+
+          <div class="mb-3">
+            <label for="cliente_id" class="form-label">Cliente</label>
+            <select id="cliente_id" class="form-select" required></select>
+          </div>
+
+          <div class="mb-3">
+            <label for="fecha_salida" class="form-label">Fecha de salida</label>
+            <input type="date" class="form-control" id="fecha_salida" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="prioridad" class="form-label">Prioridad</label>
+            <select id="prioridad" class="form-select" required>
+              <option value="alta">Alta</option>
+              <option value="media" selected>Media</option>
+              <option value="baja">Baja</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">Observaciones</label>
+            <textarea id="observaciones" class="form-control"></textarea>
+          </div>
+
+          <hr>
+          <h5>Detalles del Pedido</h5>
+          <div id="contenedorDetalles"></div>
+          <button type="button" class="btn btn-outline-light mb-3" onclick="agregarDetalle()">Agregar Detalle</button>
+        </div>
+
+        <div class="modal-footer border-info">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-info">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Detalle Pedido -->
+<div class="modal fade" id="modalDetallePedido" tabindex="-1" aria-labelledby="modalDetallePedidoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-primary">
+        <h5 class="modal-title" id="modalDetallePedidoLabel">Detalle del Pedido</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group mb-3">
+          <li class="list-group-item bg-dark text-white"><strong>ID:</strong> <span id="det-id"></span></li>
+          <li class="list-group-item bg-dark text-white"><strong>Cliente:</strong> <span id="det-cliente"></span></li>
+          <li class="list-group-item bg-dark text-white"><strong>Fecha Pedido:</strong> <span id="det-fecha_pedido"></span></li>
+          <li class="list-group-item bg-dark text-white"><strong>Fecha Salida:</strong> <span id="det-fecha_salida"></span></li>
+          <li class="list-group-item bg-dark text-white"><strong>Estado:</strong> <span id="det-estado"></span></li>
+          <li class="list-group-item bg-dark text-white"><strong>Prioridad:</strong> <span id="det-prioridad"></span></li>
+          <li class="list-group-item bg-dark text-white"><strong>Observaciones:</strong> <span id="det-observaciones"></span></li>
+        </ul>
+
+        <h5>Modelos Solicitados</h5>
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>Cantidad</th>
+              <th>Precio Unitario</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="detalle-modelos">
+            <!-- Detalles cargados por JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

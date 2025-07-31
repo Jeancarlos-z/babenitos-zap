@@ -1,0 +1,103 @@
+<div>
+  <h3 class="text-neon">Panel de Inicio</h3>
+  <p>Desde aquí puedes acceder rápidamente a las estadísticas y herramientas principales del sistema.</p>
+
+  <!-- 🔢 Indicadores -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <div class="row text-center mb-4">
+    <div class="col">
+      <div class="card bg-primary text-white shadow h-100 animate-hover">
+        <div class="card-body">
+          <i class="bi bi-box-seam display-6"></i>
+          <h6 class="mt-2">Total Pedidos</h6>
+          <h3 id="ind-total" class="animated-counter">0</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card bg-warning text-white shadow h-100 animate-hover">
+        <div class="card-body">
+          <i class="bi bi-hourglass-split display-6"></i>
+          <h6 class="mt-2">Pendientes</h6>
+          <h3 id="ind-pendientes" class="animated-counter">0</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card bg-info text-white shadow h-100 animate-hover">
+        <div class="card-body">
+          <i class="bi bi-hammer display-6"></i>
+          <h6 class="mt-2">En Producción</h6>
+          <h3 id="ind-produccion" class="animated-counter">0</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card bg-success text-white shadow h-100 animate-hover">
+        <div class="card-body">
+          <i class="bi bi-check-circle display-6"></i>
+          <h6 class="mt-2">Completados</h6>
+          <h3 id="ind-completados" class="animated-counter">0</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card bg-dark text-white shadow h-100 animate-hover">
+        <div class="card-body">
+          <i class="bi bi-calendar-event display-6"></i>
+          <h6 class="mt-2">Pedidos este Mes</h6>
+          <h3 id="ind-mes" class="animated-counter">0</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📊 Gráficas -->
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="card card-dark-gradient">
+        <div class="card-body">
+          <h5 class="card-title text-white text-center">Pedidos por Estado</h5>
+          <canvas id="grafica1" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="card card-dark-gradient">
+        <div class="card-body">
+          <h5 class="card-title text-white text-center">Pedidos por Mes</h5>
+          <canvas id="grafica2" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+
+<!-- 🎨 Estilos -->
+<style>
+  .animate-hover:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .animated-counter {
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+  }
+
+  .card-dark-gradient {
+    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+  }
+
+  .card-dark-gradient canvas {
+    background-color: transparent !important;
+  }
+</style>
+

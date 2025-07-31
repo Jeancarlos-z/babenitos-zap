@@ -1,0 +1,75 @@
+<div class="container text-white">
+  <h3 class="mb-4 border-bottom pb-2">Gestión de Problemas</h3>
+
+  <div class="mb-3">
+    <button class="btn btn-outline-warning" id="btnNuevoProblema">
+      <i class="bi bi-exclamation-diamond-fill"></i> Nuevo Problema
+    </button>
+  </div>
+
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Área</th>
+        <th>Descripción</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody id="tabla-problemas">
+      <!-- Filas insertadas dinámicamente -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal Problema -->
+<div class="modal fade" id="modalProblema" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content text-dark">
+      <div class="modal-header">
+        <h5 class="modal-title">Registrar Problema</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="problemaId">
+
+        <div class="mb-2">
+          <select class="form-select" id="area" required>
+            <option value="">Seleccione un área</option>
+          </select>
+          <div class="form-text text-danger d-none" id="error-area">Debe seleccionar un área válida.</div>
+        </div>
+
+        <div class="mb-2">
+          <textarea class="form-control" id="descripcion" placeholder="Descripción del problema" rows="3" required></textarea>
+          <div class="form-text text-danger d-none" id="error-descripcion">La descripción es requerida.</div>
+        </div>
+
+        <div class="mb-2">
+          <select class="form-select" id="estado" required>
+            <option value="">Seleccione estado</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="proceso">Proceso</option>
+            <option value="resuelto">Resuelto</option>
+          </select>
+          <div class="form-text text-danger d-none" id="error-estado">Debe seleccionar un estado.</div>
+        </div>
+
+        <div class="mb-2">
+          <textarea class="form-control" id="accion" placeholder="Acción tomada o sugerida" rows="2" required></textarea>
+          <div class="form-text text-danger d-none" id="error-accion">Debe ingresar una acción válida.</div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="btnGuardarProblema" class="btn btn-warning">Guardar</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/js/problema.js"></script>

@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(to right, #4e342e, #000000); /* Marrón a negro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+    color: #ffffff;
+}
+
+.login-container {
+    display: flex;
+    width: 900px;
+    height: 500px;
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 25px #00ffcc;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.login-image {
+    flex: 1;
+    background: url('/static/img/babenitoLogin.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.login-form {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #1c1c1c;
+}
+
+.login-form h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #00ffe7;
+    text-shadow: 0 0 5px #00ffe7;
+}
+
+.form-label {
+    color: #00ffcc;
+}
+
+.form-control {
+    background-color: #2e2e2e;
+    border: 1px solid #00ffcc;
+    color: #ffffff;
+}
+
+.btn-login {
+    background-color: #00ffcc;
+    color: #000;
+    border: none;
+}
+
+.btn-login:hover {
+    background-color: #00ffe7;
+}

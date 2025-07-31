@@ -1,0 +1,120 @@
+<div class="container text-white">
+  <h3 class="mb-4 border-bottom pb-2">Gestión de Modelos</h3>
+
+  <div class="mb-3">
+    <button id="btnNuevoModelo" class="btn btn-outline-info">
+      <i class="bi bi-plus-circle"></i> Nuevo Modelo
+    </button>
+  </div>
+
+  <table class="table table-dark table-hover">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Categoría</th>
+        <th>Material</th>
+        <th>Color Suela</th>
+        <th>Color Modelo</th>
+        <th>Género</th>
+        <th>Imagen</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+
+    <tbody id="tabla-modelos">
+      <!-- Contenido generado dinámicamente -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal Modelo -->
+<div class="modal fade" id="modalModelo" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content text-dark">
+      <div class="modal-header">
+        <h5 class="modal-title">Modelo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="modeloId">
+
+
+        <div class="mb-2">
+          <select class="form-select" id="categoria">
+            <option value="">Seleccione Categoría</option>
+            <option>Deportivo</option>
+            <option>Casual</option>
+            <option>Formal</option>
+            <option>Bota</option>
+            <option>Infantil</option>
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <select class="form-select" id="material">
+            <option value="">Seleccione Material</option>
+            <option>Lona</option>
+            <option>Poliéster</option>
+            <option>Cuero</option>
+            <option>Malla</option>
+            <option>Licra</option>
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <select class="form-select" id="colorPlanta">
+            <option value="">Color de Suela</option>
+            <option>Blanco</option>
+            <option>Negro</option>
+            <option>Marrón</option>
+            <option>Beige</option>
+            <option>Gris</option>
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <select class="form-select" id="colorModelo">
+            <option value="">Color del Modelo</option>
+            <option>Rojo</option>
+            <option>Azul</option>
+            <option>Verde</option>
+            <option>Negro</option>
+            <option>Blanco</option>
+            <option>Amarillo</option>
+            <option>Rosa</option>
+            <option>Multicolor</option>
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <select class="form-select" id="genero">
+            <option value="">Seleccione Género</option>
+            <option>Hombre</option>
+            <option>Mujer</option>
+            <option>Unisex</option>
+            <option>Niño</option>
+            <option>Niña</option>
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <label for="imagen" class="form-label">Imagen</label>
+          <input type="file" class="form-control" id="imagen" accept="image/*">
+
+          <!-- Imagen actual -->
+          <div class="mt-2">
+            <img id="previewImagen" src="" alt="Imagen actual" style="max-width: 100%; height: auto; display: none; border: 1px solid #ccc; padding: 4px;">
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button id="btnGuardarModelo" class="btn btn-primary">Guardar</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script -->
+<script src="/static/js/modelo.js"></script>

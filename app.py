@@ -129,7 +129,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 # Iniciar servidor
 if __name__ == "__main__":
     puerto = 8000
-    servidor = ThreadingHTTPServer(("localhost", puerto), RequestHandler)
+    servidor = ThreadingHTTPServer(("0.0.0.0", puerto), RequestHandler)
     servidor.user_session = user_session
 
     print(f"🚀 Servidor ejecutándose en http://localhost:{puerto}")

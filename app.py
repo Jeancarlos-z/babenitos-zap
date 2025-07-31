@@ -128,7 +128,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
 # Iniciar servidor
 if __name__ == "__main__":
-    puerto = 5700
+    puerto = 8000
     servidor = ThreadingHTTPServer(("localhost", puerto), RequestHandler)
     servidor.user_session = user_session
 
